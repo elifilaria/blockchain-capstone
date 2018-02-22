@@ -3,7 +3,9 @@
 Spring 2018
 
 ##To run the app:
+```
 npm install
 npm build
 npm run dev
 
+```
