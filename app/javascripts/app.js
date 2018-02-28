@@ -18,12 +18,13 @@ import { default as contract } from 'truffle-contract'
 import voting_artifacts from '../../build/contracts/Voting.json'
 
 var Voting = contract(voting_artifacts);
-  console.log("COming here");s
+//console.log("COming here");
 let candidates = {}
 
 let tokenPrice = null;
 
 window.voteForCandidate = function(candidate) {
+  //console.log("COMING HERE");
   let candidateName = $("#candidate").val();
   let voteTokens = $("#vote-tokens").val();
   $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")

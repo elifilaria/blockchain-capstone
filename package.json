@@ -1,14 +1,13 @@
 {
-  "name": "blockchain_voting",
+  "name": "truffle-init-webpack",
   "version": "0.0.1",
-  "description": "Voting Application that uses blockchain implementation",
+  "description": "Frontend example using truffle v3",
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack",
     "dev": "webpack-dev-server"
   },
-  "built_upon_by":"Mazen, Elif, Deepak and Syver",
-  "original_author": "Douglas von Kohorn",
+  "author": "Douglas von Kohorn",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.22.2",
