@@ -18,13 +18,15 @@ import { default as contract } from 'truffle-contract'
 import voting_artifacts from '../../build/contracts/Voting.json'
 
 var Voting = contract(voting_artifacts);
-//console.log("COming here");
+
+console.log(window);
 let candidates = {}
 
 let tokenPrice = null;
 
 window.voteForCandidate = function(candidate) {
   //console.log("COMING HERE");
+  console.log("COMING AGAN")
   let candidateName = $("#candidate").val();
   let voteTokens = $("#vote-tokens").val();
   $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
@@ -89,6 +91,7 @@ window.lookupVoterInfo = function() {
  * table in the UI with all the candidates and the votes they have received.
  */
 function populateCandidates() {
+
   Voting.deployed().then(function(contractInstance) {
     contractInstance.allCandidates.call().then(function(candidateArray) {
       for(let i=0; i < candidateArray.length; i++) {
@@ -96,6 +99,7 @@ function populateCandidates() {
          * handy toUtf8 method to convert from bytes32 to string
          */
         candidates[web3.toUtf8(candidateArray[i])] = "candidate-" + i;
+        console.log(candidates);
       }
       setupCandidateRows();
       populateCandidateVotes();
@@ -155,6 +159,7 @@ $( document ).ready(function() {
   }
 
   Voting.setProvider(web3.currentProvider);
+  
   populateCandidates();
 
 });
