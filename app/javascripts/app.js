@@ -26,7 +26,7 @@ let tokenPrice = null;
 
 window.voteForCandidate = function(candidate) {
   //console.log("COMING HERE");
-  console.log("COMING AGAN")
+  
   let candidateName = $("#candidate").val();
   let voteTokens = $("#vote-tokens").val();
   $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
