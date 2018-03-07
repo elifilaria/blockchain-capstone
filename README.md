@@ -6,6 +6,7 @@ Spring 2018
 
 ## To run the app:
 Download and install Ganache from http://truffleframework.com/ganache/
+
 Run Ganache
 
 ```
