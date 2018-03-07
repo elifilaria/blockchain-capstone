@@ -17,8 +17,6 @@ import { default as contract } from 'truffle-contract'
 
 import voting_artifacts from '../../build/contracts/Voting.json'
 
-import data from '../candidates.json'
-
 var Voting = contract(voting_artifacts);
 
 console.log(window);
@@ -93,27 +91,6 @@ window.lookupVoterInfo = function() {
  * table in the UI with all the candidates and the votes they have received.
  */
 function populateCandidates() {
-  // $.getJSON('../candidates.json',function(data){
-  //   console.log(data);
-  // })
-  //console.log(candidates_list);
-  var candRow=$('#candRow');
-  var candTemplate=$('#candTemplate');
-  console.log(candTemplate);
-
-  for (var i=0;i<data.length;i++){
-        console.log(data[i].picture);
-        candTemplate.find('.panel-title').text(data[i].name);
-        candTemplate.find('img').attr('src', data[i].picture);
-        candTemplate.find('.cand-org').text(data[i].breed);
-        candTemplate.find('.cand-year').text(data[i].age);
-        candTemplate.find('.cand-motto').text(data[i].location);
-        candTemplate.find('.btn-vote').attr('data-id', data[i].id);
-
-        candRow.append(candTemplate.html());
-        console.log('Sucess');
-}
-  
 
   Voting.deployed().then(function(contractInstance) {
     contractInstance.allCandidates.call().then(function(candidateArray) {

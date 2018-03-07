@@ -3,7 +3,7 @@ solc=require('solc')
 const fs = require('fs');
 web3=new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 //console.log(web3.eth.accounts)
-code=fs.readFileSync('voting_v1.sol').toString()
+code=fs.readFileSync('contracts/voting_v1.sol').toString()
 
 compiledCode=solc.compile(code);
 console.log(code)
@@ -36,3 +36,44 @@ contractInstance.voteForCandidate('Rama', {from: web3.eth.accounts[0]})
 '0x3da069a09577514f2baaa11bc3015a16edf26aad28dffbcd126bde2e71f2b76f'
 contractInstance.totalVotesFor.call('Rama').toLocaleString()
 '3'
+
+
+
+deployedContract = VotingContract.new(['Ramesh','Nick','Jose'],{data: byteCode, from: web3.eth.accounts[0], gas: 4700000})
+
+
+contractInstance.totalVotesFor.call('Ramesh')
+
+
+contractInstance.voteForCandidate('Ramesh', {from: web3.eth.accounts[0]})
+contractInstance.voteForCandidate('Ramesh', {from: web3.eth.accounts[0]})
+
+contractInstance.totalVotesFor.call('Ramesh').toLocaleString()
+
+
+Web3=require('artifacts')
+
+
+
+
+contractInstance = VotingContract.at(deployedContract.address)
+
+contractInstance.candidateList.call()
+
+deployedContract.candidateList
+
+
+var ele = document.createElement("script");
+var scriptPath = "http://localhost:8080/app.js" //verify the script path
+ele.setAttribute("src",scriptPath);
+document.head.appendChild(ele)
+
+
+
+(function (exports, require, module, __filename, __dirname) {
+
+code=fs.readFileSync('contracts/voting_v1.sol').toString()
+console.log(code)
+
+	/* your code */
+});
