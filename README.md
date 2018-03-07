@@ -9,6 +9,9 @@ Download and install Ganache from http://truffleframework.com/ganache/
 
 Run Ganache
 
+
+Then run these commands:
+
 ```
 npm install -g truffle
 npm install -g etherumjs-testrpc
