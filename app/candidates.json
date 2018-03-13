@@ -1,58 +1,58 @@
 [
   {
     "id": 0,
-    "name": "Frieda",
+    "name": "Sam",
     "picture": "app/images/Sam.jpg",
-    "age": 3,
-    "breed": "Scottish Terrier",
-    "location": "Lisco, Alabama"
+    "year": 2019,
+    "org": "After Dark Committee Coordinator",
+    "motto": "Lisco, Alabama"
   },
   {
     "id": 1,
-    "name": "Gina",
+    "name": "Andrew",
     "picture": "app/images/Andrew.jpeg",
-    "age": 3,
-    "breed": "Scottish Terrier",
-    "location": "Tooleville, West Virginia"
+    "year": 2020,
+    "org": "Diversity Celebrations Committee Coordinator",
+    "motto": "I’m Here to Serve and Support"
   },
   {
     "id": 2,
-    "name": "Collins",
+    "name": "Ian",
     "picture": "app/images/Ian.jpg",
-    "age": 2,
-    "breed": "French Bulldog",
-    "location": "Freeburn, Idaho"
+    "year": 2021,
+    "org": "Environmental Senator",
+    "motto": "We can Achieve Sustainability!"
   },
   {
     "id": 3,
-    "name": "Melissa",
+    "name": "Jack",
     "picture": "app/images/Jack.jpg",
-    "age": 2,
-    "breed": "Boxer",
-    "location": "Camas, Pennsylvania"
+    "year": 2021,
+    "org": "Board of Regents Student Committee Coordinator",
+    "motto": "Transparency is Fair You See"
   },
   {
     "id": 4,
-    "name": "Jeanine",
+    "name": "Jonah",
     "picture": "app/images/Jonah.jpg",
-    "age": 2,
-    "breed": "French Bulldog",
-    "location": "Gerber, South Dakota"
+    "year": 2021,
+    "org": "Curriculum Senator",
+    "motto": "Gerber, South Dakota"
   },
   {
     "id": 5,
-    "name": "Elvia",
+    "name": "Mariem",
     "picture": "app/images/Mariem.jpg",
-    "age": 3,
-    "breed": "French Bulldog",
-    "location": "Innsbrook, Illinois"
+    "year": 2020,
+    "org": "Board of Regents Student Committee Coordinator",
+    "motto": "Innsbrook, Illinois"
   },
   {
     "id": 6,
-    "name": "Latisha",
-    "picture": "app/images/Sam.jpg",
-    "age": 3,
-    "breed": "Golden Retriever",
-    "location": "Soudan, Louisiana"
+    "name": "Atefeh",
+    "picture": "app/images/Atefeh.jpg",
+    "year": 2020,
+    "org": "Board of Regents Student Committee Coordinator",
+    "motto": "Soudan, Louisiana"
   }
 ]

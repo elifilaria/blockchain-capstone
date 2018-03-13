@@ -102,12 +102,12 @@ function populateCandidates() {
   console.log(candTemplate);
 
   for (var i=0;i<data.length;i++){
-        console.log(data[i].picture);
+        //console.log(data[i].picture);
         candTemplate.find('.panel-title').text(data[i].name);
         candTemplate.find('img').attr('src', data[i].picture);
-        candTemplate.find('.cand-org').text(data[i].breed);
-        candTemplate.find('.cand-year').text(data[i].age);
-        candTemplate.find('.cand-motto').text(data[i].location);
+        candTemplate.find('.cand-org').text(data[i].org);
+        candTemplate.find('.cand-year').text(data[i].year);
+        candTemplate.find('.cand-motto').text(data[i].motto);
         candTemplate.find('.btn-vote').attr('data-id', data[i].id);
 
         candRow.append(candTemplate.html());
