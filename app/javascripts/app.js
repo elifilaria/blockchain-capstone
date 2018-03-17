@@ -116,9 +116,19 @@ function populateCandidates() {
         console.log('Sucess');
 }
   
-$('.btn-vote').click(function(){
+$('.btn-vote').click(function(evt){
+  let ID = $(evt.toElement).data('id');
+  //let check=$(evt.toElement).data.base
+  let candidateName = $('.panel-title')[ID].innerHTML
+  //console.log(evt);
+  console.log(candidateName)
   //console.log("Vote Button Clicked!");
 
+//let candidateName = $('.panel-title').val();
+//let candidateName = candTemplate.find('.panel-title').text();
+//let voteTokens = $("#vote-tokens").val();
+let voteTokens=1;
+//console.log(candidateName);
   Voting.deployed().then(function(contractInstance){
     console.log("Contract Instance");
     //console.log(contractInstance);
