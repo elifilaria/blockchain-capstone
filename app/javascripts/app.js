@@ -30,6 +30,7 @@ window.voteForCandidate = function(candidate) {
   //console.log("COMING HERE");
   
   let candidateName = $("#candidate").val();
+  //console.log(candidateName);
   let voteTokens = $("#vote-tokens").val();
   $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
   $("#candidate").val("");
@@ -39,6 +40,7 @@ window.voteForCandidate = function(candidate) {
    * in Truffle returns a promise which is why we have used then()
    * everywhere we have a transaction call
    */
+
 
 
   Voting.deployed().then(function(contractInstance) {
@@ -114,6 +116,20 @@ function populateCandidates() {
         console.log('Sucess');
 }
   
+$('.btn-vote').click(function(){
+  //console.log("Vote Button Clicked!");
+
+  Voting.deployed().then(function(contractInstance){
+    console.log("Contract Instance");
+    //console.log(contractInstance);
+    contractInstance.voteForCandidate(candidateName,voteTokens,{gas:140000,from:web3.eth.accounts[0]}).then(function(){
+      let div_id=candidates[candidateName];
+      console.log(div_id);
+
+    });
+  })
+})
+
 
   Voting.deployed().then(function(contractInstance) {
     contractInstance.allCandidates.call().then(function(candidateArray) {
