@@ -25,6 +25,7 @@ console.log(window);
 let candidates = {}
 
 let tokenPrice = null;
+var votedcandidates=[];
 
 window.voteForCandidate = function(candidate) {
   //console.log("COMING HERE");
@@ -131,12 +132,20 @@ let voteTokens=1;
 //console.log(candidateName);
   Voting.deployed().then(function(contractInstance){
     console.log("Contract Instance");
-    //console.log(contractInstance);
-    contractInstance.voteForCandidate(candidateName,voteTokens,{gas:140000,from:web3.eth.accounts[0]}).then(function(){
+    //console.log(contractInstance.address);
+    if (!votedcandidates.includes(contractInstance.address)){
+        contractInstance.voteForCandidate(candidateName,voteTokens,{gas:1400000,from:web3.eth.accounts[0]}).then(function(){
       let div_id=candidates[candidateName];
       console.log(div_id);
+      votedcandidates.push(contractInstance.address)
+      console.log(votedcandidates);
 
     });
+    }
+    else{
+      console.log("You have already voted!");
+    }
+
   })
 })
 
