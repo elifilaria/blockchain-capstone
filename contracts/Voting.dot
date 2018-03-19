@@ -1,0 +1,18 @@
+strict digraph {
+  Voting
+  totalVotesFor
+  voteForCandidate
+  require
+  totalTokensUsed
+  indexOfCandidate
+  buy
+  tokensSold
+  voterDetails
+  transferTo
+  transfer
+  allCandidates
+  voteForCandidate -> require
+  buy -> require
+  transferTo -> transfer
+}
+
