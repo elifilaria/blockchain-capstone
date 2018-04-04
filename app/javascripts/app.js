@@ -45,7 +45,7 @@ window.voteForCandidate = function(candidate) {
 
 
   Voting.deployed().then(function(contractInstance) {
-    contractInstance.voteForCandidate(candidateName, voteTokens, {gas: 140000, from: web3.eth.accounts[0]}).then(function() {
+    contractInstance.voteForCandidate(candidateName, voteTokens, {gas: 1400000, from: web3.eth.accounts[0]}).then(function() {
       let div_id = candidates[candidateName];
       return contractInstance.totalVotesFor.call(candidateName).then(function(v) {
         $("#" + div_id).html(v.toString());
@@ -132,9 +132,10 @@ let voteTokens=1;
 //console.log(candidateName);
   Voting.deployed().then(function(contractInstance){
     console.log("Contract Instance");
+    console.log(contractInstance);
     //console.log(contractInstance.address);
     if (!votedcandidates.includes(contractInstance.address)){
-        contractInstance.voteForCandidate(candidateName,voteTokens,{gas:1400000,from:web3.eth.accounts[0]}).then(function(){
+      contractInstance.voteForCandidate(candidateName,voteTokens,{gas:140000,from:web3.eth.accounts[0]}).then(function(){
       let div_id=candidates[candidateName];
       console.log(div_id);
       votedcandidates.push(contractInstance.address)
@@ -147,6 +148,7 @@ let voteTokens=1;
     }
 
   })
+
 })
 
 

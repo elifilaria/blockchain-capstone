@@ -12,6 +12,9 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './app/index.html', to: "index.html" }
     ])
+    // new CopyWebpackPlugin([
+    //   { from: './app/results.html', to: "results.html" }
+    // ])
   ],
   module: {
     rules: [
