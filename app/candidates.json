@@ -5,7 +5,7 @@
     "picture": "app/images/Sam.jpg",
     "year": 2019,
     "org": "After Dark Committee Coordinator",
-    "motto": "Lisco, Alabama"
+    "motto": "No Motto"
   },
   {
     "id": 1,
@@ -37,7 +37,7 @@
     "picture": "app/images/Jonah.jpg",
     "year": 2021,
     "org": "Curriculum Senator",
-    "motto": "Gerber, South Dakota"
+    "motto": "No Motto"
   },
   {
     "id": 5,
@@ -45,7 +45,7 @@
     "picture": "app/images/Mariem.jpg",
     "year": 2020,
     "org": "Board of Regents Student Committee Coordinator",
-    "motto": "Innsbrook, Illinois"
+    "motto": "No Motto"
   },
   {
     "id": 6,
@@ -53,6 +53,6 @@
     "picture": "app/images/Atefeh.jpg",
     "year": 2020,
     "org": "Board of Regents Student Committee Coordinator",
-    "motto": "Soudan, Louisiana"
+    "motto": "No Motto"
   }
 ]

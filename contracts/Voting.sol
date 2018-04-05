@@ -7,6 +7,7 @@ contract Voting {
     address voterAddress; // The address of the voter
     uint tokensBought;    // The total no. of tokens this voter owns
     uint[] tokensUsedPerCandidate; // Array to keep track of votes per candidate.
+    bool votebool;
     /* We have an array of candidates initialized below.
      Every time this voter votes with her tokens, the value at that
      index is incremented. Example, if candidateList array declared
@@ -55,7 +56,7 @@ contract Voting {
   function voteForCandidate(bytes32 candidate, uint votesInTokens) public {
     uint index = indexOfCandidate(candidate);
     require(index != uint(-1));
-
+    require(voterInfo[msg.sender].votebool!=true);
     // msg.sender gives us the address of the account/voter who is trying
     // to call this function
     if (voterInfo[msg.sender].tokensUsedPerCandidate.length == 0) {
@@ -72,6 +73,7 @@ contract Voting {
 
     // Store how many tokens were used for this candidate
     voterInfo[msg.sender].tokensUsedPerCandidate[index] += votesInTokens;
+    voterInfo[msg.sender].votebool=true;
   }
 
   // Return the sum of all the tokens used by this voter.
@@ -129,5 +131,10 @@ contract Voting {
   function allCandidates() view public returns (bytes32[]) {
     return candidateList;
   }
+
+function hasvoted() view public returns (bool){
+  return (voterInfo[msg.sender].votebool);
+}
+
 
 }

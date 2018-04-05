@@ -15,19 +15,19 @@ import { default as contract } from 'truffle-contract'
  * https://gist.github.com/maheshmurthy/f6e96d6b3fff4cd4fa7f892de8a1a1b4#file-index-js
  */
 
-import voting_artifacts from '../../build/contracts/Voting.json'
+ import voting_artifacts from '../../build/contracts/Voting.json'
 
-import data from '../candidates.json'
+ import data from '../candidates.json'
 
-var Voting = contract(voting_artifacts);
+ var Voting = contract(voting_artifacts);
 
-console.log(window);
-let candidates = {}
+ console.log(window);
+ let candidates = {}
 
-let tokenPrice = null;
-var votedcandidates=[];
+ let tokenPrice = null;
+ var votedcandidates=[];
 
-window.voteForCandidate = function(candidate) {
+ window.voteForCandidate = function(candidate) {
   //console.log("COMING HERE");
   
   let candidateName = $("#candidate").val();
@@ -36,7 +36,6 @@ window.voteForCandidate = function(candidate) {
   $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
   $("#candidate").val("");
   $("#vote-tokens").val("");
-
   /* Voting.deployed() returns an instance of the contract. Every call
    * in Truffle returns a promise which is why we have used then()
    * everywhere we have a transaction call
@@ -44,8 +43,8 @@ window.voteForCandidate = function(candidate) {
 
 
 
-  Voting.deployed().then(function(contractInstance) {
-    contractInstance.voteForCandidate(candidateName, voteTokens, {gas: 1400000, from: web3.eth.accounts[0]}).then(function() {
+   Voting.deployed().then(function(contractInstance) {
+       contractInstance.voteForCandidate(candidateName, voteTokens, {gas: 1400000, from: web3.eth.accounts[0]}).then(function() {
       let div_id = candidates[candidateName];
       return contractInstance.totalVotesFor.call(candidateName).then(function(v) {
         $("#" + div_id).html(v.toString());
@@ -53,16 +52,18 @@ window.voteForCandidate = function(candidate) {
       });
     });
   });
-}
+ }
 
 /* The user enters the total no. of tokens to buy. We calculate the total cost and send it in
  * the request. We have to send the value in Wei. So, we use the toWei helper method to convert
  * from Ether to Wei.
  */
 
-window.buyTokens = function() {
+ window.buyTokens = function() {
   let tokensToBuy = $("#buy").val();
   let price = tokensToBuy * tokenPrice;
+  console.log("This is the token price");
+  console.log(price);
   $("#buy-msg").html("Purchase order has been submitted. Please wait.");
   Voting.deployed().then(function(contractInstance) {
     contractInstance.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}).then(function(v) {
@@ -95,7 +96,7 @@ window.lookupVoterInfo = function() {
  * the blockchain and populate the array. Once we fetch the candidates, we setup the
  * table in the UI with all the candidates and the votes they have received.
  */
-function populateCandidates() {
+ function populateCandidates() {
   // $.getJSON('../candidates.json',function(data){
   //   console.log(data);
   // })
@@ -103,6 +104,7 @@ function populateCandidates() {
   var candRow=$('#candRow');
   var candTemplate=$('#candTemplate');
   console.log(candTemplate);
+
 
   for (var i=0;i<data.length;i++){
         //console.log(data[i].picture);
@@ -115,10 +117,10 @@ function populateCandidates() {
 
         candRow.append(candTemplate.html());
         console.log('Sucess');
-}
-  
-$('.btn-vote').click(function(evt){
-  let ID = $(evt.toElement).data('id');
+      }
+
+      $('.btn-vote').click(function(evt){
+        let ID = $(evt.toElement).data('id');
   //let check=$(evt.toElement).data.base
   let candidateName = $('.panel-title')[ID].innerHTML
   //console.log(evt);
@@ -130,18 +132,23 @@ $('.btn-vote').click(function(evt){
 //let voteTokens = $("#vote-tokens").val();
 let voteTokens=1;
 //console.log(candidateName);
-  Voting.deployed().then(function(contractInstance){
-    console.log("Contract Instance");
-    console.log(contractInstance);
+Voting.deployed().then(function(contractInstance){
+  console.log("Contract Instance");
+  console.log(contractInstance);
+  console.log(contractInstance.hasvoted().then(function(){
+    console.log("INside hasvoted");
+  }));
     //console.log(contractInstance.address);
     if (!votedcandidates.includes(contractInstance.address)){
-      contractInstance.voteForCandidate(candidateName,voteTokens,{gas:140000,from:web3.eth.accounts[0]}).then(function(){
-      let div_id=candidates[candidateName];
-      console.log(div_id);
-      votedcandidates.push(contractInstance.address)
-      console.log(votedcandidates);
+      console.log(contractInstance.address);
+      contractInstance.voteForCandidate(candidateName,voteTokens,{gas:1400000,from:web3.eth.accounts[0]}).then(function(){
+        let div_id=candidates[candidateName];
 
-    });
+        console.log(div_id);
+        votedcandidates.push(contractInstance.address)
+        console.log(votedcandidates);
+
+      });
     }
     else{
       console.log("You have already voted!");
@@ -152,44 +159,62 @@ let voteTokens=1;
 })
 
 
-  Voting.deployed().then(function(contractInstance) {
-    contractInstance.allCandidates.call().then(function(candidateArray) {
-      for(let i=0; i < candidateArray.length; i++) {
-        /* We store the candidate names as bytes32 on the blockchain. We use the
-         * handy toUtf8 method to convert from bytes32 to string
-         */
-        candidates[web3.toUtf8(candidateArray[i])] = "candidate-" + i;
-        console.log(candidates);
+Voting.deployed().then(function(contractInstance) {
+  let price=0.1;
+  console.log("This is the price");
+  console.log(price);
+  contractInstance.tokensSold.call().then(function(v) {
+    let soldtoken=v.toNumber();
+    if (soldtoken==0){
+      contractInstance.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}).then(function(v) {
+        $("#buy-msg").html("");
+        web3.eth.getBalance(contractInstance.address, function(error, result) {
+          $("#contract-balance").html(web3.fromWei(result.toString()) + " Ether");
+        });
+      })
+    }
+  });
+
+
+
+
+  contractInstance.allCandidates.call().then(function(candidateArray) {
+    for(let i=0; i < candidateArray.length; i++) {
+  /* We store the candidate names as bytes32 on the blockchain. We use the
+   * handy toUtf8 method to convert from bytes32 to string
+   */
+   candidates[web3.toUtf8(candidateArray[i])] = "candidate-" + i;
+   console.log(candidates);
+ }
+ setupCandidateRows();
+ populateCandidateVotes();
+ populateTokenData();
+});
+});
+}
+
+    function populateCandidateVotes() {
+      let candidateNames = Object.keys(candidates);
+      for (var i = 0; i < candidateNames.length; i++) {
+        let name = candidateNames[i];
+        Voting.deployed().then(function(contractInstance) {
+          contractInstance.totalVotesFor.call(name).then(function(v) {
+            $("#" + candidates[name]).html(v.toString());
+          });
+        });
       }
-      setupCandidateRows();
-      populateCandidateVotes();
-      populateTokenData();
-    });
-  });
-}
+    }
 
-function populateCandidateVotes() {
-  let candidateNames = Object.keys(candidates);
-  for (var i = 0; i < candidateNames.length; i++) {
-    let name = candidateNames[i];
-    Voting.deployed().then(function(contractInstance) {
-      contractInstance.totalVotesFor.call(name).then(function(v) {
-        $("#" + candidates[name]).html(v.toString());
+    function setupCandidateRows() {
+      Object.keys(candidates).forEach(function (candidate) { 
+        $("#candidate-rows").append("<tr><td>" + candidate + "</td><td id='" + candidates[candidate] + "'></td></tr>");
       });
-    });
-  }
-}
-
-function setupCandidateRows() {
-  Object.keys(candidates).forEach(function (candidate) { 
-    $("#candidate-rows").append("<tr><td>" + candidate + "</td><td id='" + candidates[candidate] + "'></td></tr>");
-  });
-}
+    }
 
 /* Fetch the total tokens, tokens available for sale and the price of
  * each token and display in the UI
  */
-function populateTokenData() {
+ function populateTokenData() {
   Voting.deployed().then(function(contractInstance) {
     contractInstance.totalTokens().then(function(v) {
       $("#tokens-total").html(v.toString());
