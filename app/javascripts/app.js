@@ -25,7 +25,7 @@ import { default as contract } from 'truffle-contract'
  let candidates = {}
 
  let tokenPrice = null;
- var votedcandidates=[];
+ //var votedcandidates=[];
 
  window.voteForCandidate = function(candidate) {
   //console.log("COMING HERE");
@@ -135,11 +135,10 @@ let voteTokens=1;
 Voting.deployed().then(function(contractInstance){
   console.log("Contract Instance");
   console.log(contractInstance);
-  console.log(contractInstance.hasvoted().then(function(){
-    console.log("INside hasvoted");
-  }));
-    //console.log(contractInstance.address);
-    if (!votedcandidates.includes(contractInstance.address)){
+  contractInstance.hasvoted().then(function(v){
+
+    console.log(v);
+    if (!v){
       console.log(contractInstance.address);
       contractInstance.voteForCandidate(candidateName,voteTokens,{gas:1400000,from:web3.eth.accounts[0]}).then(function(){
         let div_id=candidates[candidateName];
@@ -153,6 +152,8 @@ Voting.deployed().then(function(contractInstance){
     else{
       console.log("You have already voted!");
     }
+
+  });
 
   })
 
