@@ -144,8 +144,8 @@ Voting.deployed().then(function(contractInstance){
         let div_id=candidates[candidateName];
 
         console.log(div_id);
-        votedcandidates.push(contractInstance.address)
-        console.log(votedcandidates);
+        //votedcandidates.push(contractInstance.address)
+        //console.log(votedcandidates);
 
       });
     }
