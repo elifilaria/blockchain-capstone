@@ -101,6 +101,9 @@ window.lookupVoterInfo = function() {
   //   console.log(data);
   // })
   //console.log(candidates_list);
+
+  var user_address=90;
+  alertify.parent(document.body)
   var candRow=$('#candRow');
   var candTemplate=$('#candTemplate');
   console.log(candTemplate);
@@ -163,7 +166,7 @@ Voting.deployed().then(function(contractInstance){
 Voting.deployed().then(function(contractInstance) {
   let price=0.1;
   console.log("This is the price");
-  console.log(price);
+  user_address=contractInstance.address;
   contractInstance.tokensSold.call().then(function(v) {
     let soldtoken=v.toNumber();
     if (soldtoken==0){
@@ -176,7 +179,12 @@ Voting.deployed().then(function(contractInstance) {
     }
   });
 
+alertify.confirm("Here is your contract address\n"+user_address, function () {
+      // user clicked "ok"
 
+  }, function() {
+      // user clicked "cancel"
+  });
 
 
   contractInstance.allCandidates.call().then(function(candidateArray) {
@@ -195,15 +203,21 @@ Voting.deployed().then(function(contractInstance) {
 }
 
     function populateCandidateVotes() {
+      // confirm dialog
+
+
       let candidateNames = Object.keys(candidates);
       for (var i = 0; i < candidateNames.length; i++) {
         let name = candidateNames[i];
         Voting.deployed().then(function(contractInstance) {
           contractInstance.totalVotesFor.call(name).then(function(v) {
             $("#" + candidates[name]).html(v.toString());
+            //user_address=contractInstance.address;
           });
         });
       }
+
+
     }
 
     function setupCandidateRows() {
