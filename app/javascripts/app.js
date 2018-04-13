@@ -44,14 +44,14 @@ import { default as contract } from 'truffle-contract'
 
 
    Voting.deployed().then(function(contractInstance) {
-       contractInstance.voteForCandidate(candidateName, voteTokens, {gas: 1400000, from: web3.eth.accounts[0]}).then(function() {
+     contractInstance.voteForCandidate(candidateName, voteTokens, {gas: 1400000, from: web3.eth.accounts[0]}).then(function() {
       let div_id = candidates[candidateName];
       return contractInstance.totalVotesFor.call(candidateName).then(function(v) {
         $("#" + div_id).html(v.toString());
         $("#msg").html("");
       });
     });
-  });
+   });
  }
 
 /* The user enters the total no. of tokens to buy. We calculate the total cost and send it in
@@ -153,20 +153,31 @@ Voting.deployed().then(function(contractInstance){
       });
     }
     else{
-      console.log("You have already voted!");
+      alertify.confirm("You have already voted!", function () {
+      // user clicked "ok"
+
+    });
+
     }
 
   });
 
-  })
+})
 
 })
 
 
-Voting.deployed().then(function(contractInstance) {
-  let price=0.1;
-  console.log("This is the price");
-  user_address=contractInstance.address;
+      Voting.deployed().then(function(contractInstance) {
+        let price=0.1;
+        console.log("This is the price");
+  //popup(contractInstance.address);
+  alertify.confirm("Here is your contract address\n"+contractInstance.address, function () {
+      // user clicked "ok"
+
+    }, function() {
+      // user clicked "cancel"
+    });
+
   contractInstance.tokensSold.call().then(function(v) {
     let soldtoken=v.toNumber();
     if (soldtoken==0){
@@ -179,12 +190,6 @@ Voting.deployed().then(function(contractInstance) {
     }
   });
 
-alertify.confirm("Here is your contract address\n"+user_address, function () {
-      // user clicked "ok"
-
-  }, function() {
-      // user clicked "cancel"
-  });
 
 
   contractInstance.allCandidates.call().then(function(candidateArray) {
@@ -200,7 +205,7 @@ alertify.confirm("Here is your contract address\n"+user_address, function () {
  populateTokenData();
 });
 });
-}
+    }
 
     function populateCandidateVotes() {
       // confirm dialog
@@ -224,6 +229,16 @@ alertify.confirm("Here is your contract address\n"+user_address, function () {
       Object.keys(candidates).forEach(function (candidate) { 
         $("#candidate-rows").append("<tr><td>" + candidate + "</td><td id='" + candidates[candidate] + "'></td></tr>");
       });
+    }
+
+    function popup(message){
+      alertify.confirm("Here is your contract address\n"+message, function () {
+      // user clicked "ok"
+
+    }, function() {
+      // user clicked "cancel"
+    });
+
     }
 
 /* Fetch the total tokens, tokens available for sale and the price of
