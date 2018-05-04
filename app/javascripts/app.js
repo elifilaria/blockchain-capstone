@@ -171,7 +171,7 @@ Voting.deployed().then(function(contractInstance){
         let price=0.1;
         console.log("This is the price");
   //popup(contractInstance.address);
-  alertify.confirm("Here is your contract address\n"+contractInstance.address, function () {
+  alertify.confirm("Here is your public address\n"+contractInstance.address, function () {
       // user clicked "ok"
 
     }, function() {
