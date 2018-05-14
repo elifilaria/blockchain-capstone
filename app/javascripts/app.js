@@ -40,9 +40,6 @@ import { default as contract } from 'truffle-contract'
    * in Truffle returns a promise which is why we have used then()
    * everywhere we have a transaction call
    */
-
-
-
    Voting.deployed().then(function(contractInstance) {
      contractInstance.voteForCandidate(candidateName, voteTokens, {gas: 1400000, from: web3.eth.accounts[0]}).then(function() {
       let div_id = candidates[candidateName];
