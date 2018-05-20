@@ -11,7 +11,6 @@ Spring 2018
 
 * Install Ganache: A Personal Blockchain for Ethereum Development which can be downloaded from http://truffleframework.com/ganache/.
 * Install Node and npm: Download and install latest version of Node from https://nodejs.org/en/. Node comes with npm so installing Node automatically installs npm. You can check by typing:
-
 ```
 node -v
 npm -v
