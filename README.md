@@ -11,18 +11,13 @@ Spring 2018
 
 * Install Ganache: A Personal Blockchain for Ethereum Development which can be downloaded from http://truffleframework.com/ganache/.
 * Install Node and npm: Download and install latest version of Node from https://nodejs.org/en/. Node comes with npm so installing Node automatically installs npm. You can check by typing:
-```
-node -v
+`node -v
 npm -v
-```
-
+`
 ### Step 2:
 
 * Run the Ganache. It by default listens to RPC server on localhost:8545.
-* Clone the DApp at https://stogit.cs.stolaf.edu/cap-s18/bc and download the entire bc folder to your computer. This can be done by typing:
-```
-git clone https://stogit.cs.stolaf.edu/cap-s18/bc.git
-```
+* Clone the DApp at https://stogit.cs.stolaf.edu/cap-s18/bc and download the entire bc folder to your computer. This can be done by typing `git clone https://stogit.cs.stolaf.edu/cap-s18/bc.git`
 
 * Then run the following commands in the bc directory one after another:
 ```
