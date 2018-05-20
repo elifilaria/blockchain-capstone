@@ -7,7 +7,8 @@ Spring 2018
 ## To run the app:
 
 
-Step 1:
+### Step 1:
+
 Softwares that need to be pre-installed to start the application:
 Ganache: A Personal Blockchain for Ethereum Development which can be downloaded from http://truffleframework.com/ganache/ and here is the source code for Ganache on github. 
 Node and npm: Download and install latest version of Node from https://nodejs.org/en/. Node comes with npm so installing Node automatically installs npm. You can check by typing:
@@ -16,7 +17,8 @@ node -v
 npm -v
 ```
 
-Step 2:
+### Step 2:
+
 Clone the DApp at https://stogit.cs.stolaf.edu/cap-s18/bc and download the entire bc folder to your computer. This can be done by typing
 ```
 git clone https://stogit.cs.stolaf.edu/cap-s18/bc.git
