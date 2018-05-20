@@ -32,11 +32,11 @@ npm build
 npm run dev
 ```
 If everything above correctly worked, you will see a webpack compiled successfully message (as below) and the DApp can then be launched by visiting localhost:8080
-![alt text]((/app/images/terminal.PNG "Screenshot1")
+![alt text](/app/images/terminal.PNG "Screenshot1")
 
 Below is the screenshot of the application accessed at localhost:8080:
 
-![alt text]((/app/images/voting_demo.PNG "Screenshot2")
+![alt text](/app/images/voting_demo.PNG "Screenshot2")
 
 If you can see this page, congratulations! You can now vote for the candidates by clicking on “Vote.”
 
