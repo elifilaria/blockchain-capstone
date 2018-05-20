@@ -34,7 +34,7 @@ npm build
 npm run dev
 ```
 If everything above correctly worked, you will see a webpack compiled successfully message (as below) and the DApp can then be launched by visiting localhost:8080
-<img src="/app/images/terminal.PNG " width="40%">
+![alt text](/app/images/terminal.PNG "Screenshot1")
 
 Below is the screenshot of the application accessed at localhost:8080:
 
