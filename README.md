@@ -19,12 +19,12 @@ npm -v
 ### Step 2:
 
 * Run the Ganache. It by default listens to RPC server on localhost:8545.
-* Clone the DApp at https://stogit.cs.stolaf.edu/cap-s18/bc and download the entire bc folder to your computer. This can be done by typing
+* Clone the DApp at https://stogit.cs.stolaf.edu/cap-s18/bc and download the entire bc folder to your computer. This can be done by typing:
 ```
 git clone https://stogit.cs.stolaf.edu/cap-s18/bc.git
 ```
 
-* Then run the following commands in the bc directory one after another
+* Then run the following commands in the bc directory one after another:
 ```
 npm install -g truffle 
 npm install 
